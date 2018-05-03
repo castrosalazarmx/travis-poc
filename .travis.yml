@@ -1,3 +1,5 @@
+
+
 language: node_js
 nvm:
   - 8
@@ -7,6 +9,7 @@ cache:
     - packages/api/node_modules
     - packages/lcms/node_modules
     - packages/delivery/node_modules
+    - "$HOME/google-cloud-sdk/"
 install:
   - lerna bootstrap
 script:
