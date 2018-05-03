@@ -10,7 +10,7 @@ cache:
     - packages/api/node_modules
     - packages/lcms/node_modules
     - packages/delivery/node_modules
-    - "$HOME/google-cloud-sdk/"
+    - "$TRAVIS_BUILD_DIR/google-cloud-sdk/"
 before_install:
   - yarn global add lerna
 install:
@@ -19,9 +19,9 @@ script:
   - lerna run build
 before_deploy:
   - curl https://sdk.cloud.google.com | CLOUDSDK_CORE_DISABLE_PROMPTS=1 bash;
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  - if [ ! -d "$TRAVIS_BUILD_DIR/google-cloud-sdk/bin" ]; then rm -rf $TRAVIS_BUILD_DIR/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
   # Add gcloud to $PATH
-  - source $HOME/google-cloud-sdk/path.bash.inc
+  - source $TRAVIS_BUILD_DIR/google-cloud-sdk/path.bash.inc
   - gcloud version
 deploy:
   provider: script
