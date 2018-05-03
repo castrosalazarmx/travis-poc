@@ -18,6 +18,7 @@ before_deploy:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud version
 deploy:
-  - lerna run deploy
-    on:
+  provider: script
+  script: ./scripts/deploy.sh
+  on:
     branch: master
