@@ -1,0 +1,69 @@
+{
+  "name": "node-api-boilerplate",
+  "version": "1.0.0",
+  "description": "Starting point for a new Node.js Api",
+  "main": "src/main.js",
+  "private": false,
+  "engines": {
+    "node": "8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "production": "NODE_ENV=production node ./build/main.js",
+    "build": "backpack build",
+    "start": "backpack",
+    "docker": "docker-compose -f stack.yml up -d",
+    "logs": "docker logs -f node_api_boilerplate",
+    "lint": "eslint -c .eslintrc src",
+    "test": "NODE_ENV=test DEBUG=0 jest --verbose --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hqro/Node-API-Boilterplate.git"
+  },
+  "keywords": [
+    "backpack-core",
+    "express",
+    "babel",
+    "es8"
+  ],
+  "author": "Guillaume L. <glarivie@student.42.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hqro/Node-API-Boilterplate.git/issues"
+  },
+  "homepage": "https://github.com/hqro/Node-API-Boilterplate.git#readme",
+  "dependencies": {
+    "babel-eslint": "^8.2.2",
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.0",
+    "helmet": "^3.4.0",
+    "joi": "^13.0.2",
+    "knex": "^0.14.4",
+    "lodash": "^4.14.1",
+    "mongoose": "^4.5.7",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.11.4",
+    "babel-jest": "^21.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "backpack-core": "^0.4.0-rc1",
+    "eslint": "^4.1.1",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.6.1",
+    "jest": "^21.2.0",
+    "prettier": "^1.12.1",
+    "supertest": "^3.0.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^1.1.2",
+    "kerberos": "^0.0.23"
+  }
+}

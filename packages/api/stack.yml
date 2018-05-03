@@ -1,0 +1,52 @@
+version: '3.2'
+
+services:
+  api:
+    container_name: node_api_boilerplate
+    image: node:slim
+    restart: always
+    networks:
+      - boilerplate
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - .:/usr/app
+    command: bash -c "cd /usr/app && yarn && yarn start"
+    env_file: .env
+
+  mariadb:
+    container_name: ${MYSQL_HOST}
+    image: mariadb
+    restart: always
+    networks:
+      - boilerplate
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_PORT}
+    volumes:
+      - mariadb_data:${MYSQL_DATA_DIR}
+    env_file: .env
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+
+  mongodb:
+    container_name: ${MONGO_HOST}
+    image: mongo:latest
+    restart: always
+    networks:
+      - boilerplate
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    volumes:
+      - mongodb_data:${MONGO_DATA_DIR}
+    command: mongod --smallfiles --logpath=${MONGO_LOG_DIR} # --quiet
+    env_file: .env
+
+volumes:
+  mariadb_data:
+    driver: local
+  mongodb_data:
+    driver: local
+
+networks:
+  boilerplate:
+    external: true

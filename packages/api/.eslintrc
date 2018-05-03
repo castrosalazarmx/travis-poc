@@ -1,0 +1,21 @@
+env:
+  es6: true
+  node: true
+  jest: true
+
+extends: airbnb-base
+parser: babel-eslint
+rules:
+  semi: ["error", "never"]
+  new-cap: ["warn", { "newIsCap": true }]
+  curly: ["error", "multi"]
+  max-len: ["warn", { "code": 100, "tabWidth": 2 }]
+  arrow-parens: ["warn", "as-needed"]
+  no-confusing-arrow: "off"
+  global-require: "warn"
+  no-await-in-loop: "error"
+  space-before-function-paren: ["warn", "always"]
+  no-underscore-dangle: "off"
+  # no-restricted-syntax: "off"
+  import/prefer-default-export: "warn"
+  import/extensions: [".js", ".jsx"]

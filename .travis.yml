@@ -1,0 +1,23 @@
+language: node_js
+nvm:
+  - 8
+cache:
+  directories:
+    - node_modules
+    - packages/api/node_modules
+    - packages/lcms/node_modules
+    - packages/delivery/node_modules
+install:
+  - lerna bootstrap
+script:
+  - lerna run build
+before_deploy:
+  - curl https://sdk.cloud.google.com | CLOUDSDK_CORE_DISABLE_PROMPTS=1 bash;
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  # Add gcloud to $PATH
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud version
+deploy:
+  - lerna run deploy
+  - on:
+    branch: master
