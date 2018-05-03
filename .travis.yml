@@ -19,6 +19,9 @@ script:
 - lerna run build
 before_deploy:
 - tar -xzf credentials.tar.gz
+- chmod +x packages/api/scripts/deploy.sh
+- chmod +x packages/lcms/scripts/deploy.sh
+- chmod +x packages/delivery/scripts/deploy.sh
 deploy:
   provider: script
   script: "./scripts/deploy.sh"
