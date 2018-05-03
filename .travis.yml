@@ -19,5 +19,5 @@ before_deploy:
   - gcloud version
 deploy:
   - lerna run deploy
-  - on:
+    on:
     branch: master
