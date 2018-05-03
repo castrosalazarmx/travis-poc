@@ -3,6 +3,12 @@ sudo: required
 language: node_js
 node_js:
   - "8"
+
+branches:
+  only:
+  - gh-pages
+  - /.*/
+
 cache:
   directories:
     - node_modules
@@ -12,6 +18,8 @@ cache:
     - "$HOME/google-cloud-sdk/"
 install:
   - lerna bootstrap
+    on:
+      branch: master
 script:
   - lerna run build
 before_deploy:
