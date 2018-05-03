@@ -18,11 +18,11 @@ install:
 script:
   - lerna run build
 before_deploy:
-  - rm -rf $TRAVIS_BUILD_DIR/google-cloud-sdk/
-  - curl https://sdk.cloud.google.com | CLOUDSDK_CORE_DISABLE_PROMPTS=1 bash;
-  - if [ ! -d "$TRAVIS_BUILD_DIR/google-cloud-sdk/bin" ]; then rm -rf $TRAVIS_BUILD_DIR/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  # Add gcloud to $PATH
-  - source $TRAVIS_BUILD_DIR/google-cloud-sdk/path.bash.inc
+  # - rm -rf $TRAVIS_BUILD_DIR/google-cloud-sdk/
+  # - curl https://sdk.cloud.google.com | CLOUDSDK_CORE_DISABLE_PROMPTS=1 bash;
+  # - if [ ! -d "$TRAVIS_BUILD_DIR/google-cloud-sdk/bin" ]; then rm -rf $TRAVIS_BUILD_DIR/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  # # Add gcloud to $PATH
+  # - source $TRAVIS_BUILD_DIR/google-cloud-sdk/path.bash.inc
   - gcloud version
 deploy:
   provider: script
