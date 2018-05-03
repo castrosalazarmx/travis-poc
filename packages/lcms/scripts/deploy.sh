@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp ../../../keyfile-dev.json .
+cp ../../keyfile-dev.json .
 gcloud auth activate-service-account --key-file keyfile-dev.json
-gcloud app deploy app.yaml
+gcloud app deploy app.yaml --no-promote -q
