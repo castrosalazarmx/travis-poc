@@ -16,6 +16,8 @@ cache:
     - packages/lcms/node_modules
     - packages/delivery/node_modules
     - "$HOME/google-cloud-sdk/"
+before_install:
+  - yarn global add lerna
 install:
   - lerna bootstrap
     on:
