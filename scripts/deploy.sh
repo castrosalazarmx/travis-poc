@@ -1,3 +1,3 @@
 #!/bin/bash
 
-lerna run deploy
+lerna run deploy --loglevel verbose
