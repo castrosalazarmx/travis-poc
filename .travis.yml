@@ -1,31 +1,26 @@
 sudo: required
-
 language: node_js
 node_js:
-  - "8"
-
+- '8'
 cache:
   directories:
-    - node_modules
-    - packages/api/node_modules
-    - packages/lcms/node_modules
-    - packages/delivery/node_modules
-    - $TRAVIS_BUILD_DIR/google-cloud-sdk/
+  - node_modules
+  - packages/api/node_modules
+  - packages/lcms/node_modules
+  - packages/delivery/node_modules
+  - "$TRAVIS_BUILD_DIR/google-cloud-sdk/"
 before_install:
-  - yarn global add lerna
+- openssl aes-256-cbc -K $encrypted_a21a9babead1_key -iv $encrypted_a21a9babead1_iv
+  -in credentials.tar.gz.enc -out credentials.tar.gz -d
+- yarn global add lerna
 install:
-  - lerna bootstrap
+- lerna bootstrap
 script:
-  - lerna run build
+- lerna run build
 before_deploy:
-  # - rm -rf $TRAVIS_BUILD_DIR/google-cloud-sdk/
-  # - curl https://sdk.cloud.google.com | CLOUDSDK_CORE_DISABLE_PROMPTS=1 bash;
-  # - if [ ! -d "$TRAVIS_BUILD_DIR/google-cloud-sdk/bin" ]; then rm -rf $TRAVIS_BUILD_DIR/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  # # Add gcloud to $PATH
-  # - source $TRAVIS_BUILD_DIR/google-cloud-sdk/path.bash.inc
-  - gcloud version
+- tar -xzf credentials.tar.gz
 deploy:
   provider: script
-  script: ./scripts/deploy.sh
+  script: "./scripts/deploy.sh"
   on:
     branch: master

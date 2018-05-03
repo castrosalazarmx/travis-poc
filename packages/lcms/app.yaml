@@ -1,0 +1,3 @@
+runtime: nodejs
+service: dev-dot-cms
+env: flex

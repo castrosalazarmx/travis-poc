@@ -15,7 +15,8 @@
     "docker": "docker-compose -f stack.yml up -d",
     "logs": "docker logs -f node_api_boilerplate",
     "lint": "eslint -c .eslintrc src",
-    "test": "NODE_ENV=test DEBUG=0 jest --verbose --forceExit"
+    "test": "NODE_ENV=test DEBUG=0 jest --verbose --forceExit",
+    "deploy": "./scripts/deploy.sh"
   },
   "repository": {
     "type": "git",
