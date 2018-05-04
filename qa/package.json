@@ -1,0 +1,18 @@
+{
+  "name": "qa",
+  "version": "0.0.0",
+  "description": "Unity learn QA test suite",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^3.9.3"
+  },
+  "devDependencies": {
+    "cypress": "^2.1.0"
+  }
+}

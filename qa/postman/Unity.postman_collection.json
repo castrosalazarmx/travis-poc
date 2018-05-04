@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "b0c84f3e-a2f9-4f0c-812b-f6182de13b1b",
+		"name": "Unity",
+		"description": "Postman tests for UL 2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Install Postman BDD",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// If the \"postman_bdd_path\" environment variable is set, then we'll use it.",
+							"// Otherwise, we'll default to the published version",
+							"if (!environment.postman_bdd_path) {",
+							"    postman.setGlobalVariable('postman_bdd_path', 'http://bigstickcarpet.com/postman-bdd/dist/postman-bdd.min.js');",
+							"}",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// \"install\" Postman BDD",
+							"postman.setGlobalVariable('postmanBDD', responseBody);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{postman_bdd_path}}",
+					"host": [
+						"{{postman_bdd_path}}"
+					]
+				},
+				"description": "This request downloads [Postman BDD](https://github.com/BigstickCarpet/postman-bdd) and then \"installs\" it by setting a global variable\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Successful response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"eval(globals.postmanBDD);",
+							"",
+							"it('should be a successful response', () => {",
+							"    response.ok.should.be.true;",
+							"    response.should.have.status(200);",
+							"    response.statusType.should.equal(2);",
+							"    response.error.should.be.false;",
+							"});",
+							"",
+							"it('should respond in a timely manner', () => {",
+							"    response.time.should.be.below(500);",
+							"});",
+							"",
+							"it('should return HTML', () => {",
+							"    response.should.be.html;",
+							"    response.should.have.header('Content-Type', 'text/html; charset=utf-8');",
+							"    response.type.should.equal('text/html');",
+							"    response.charset.should.equal('utf-8');",
+							"});",
+							"",
+							"it('should contain the expected content', () => {",
+							"    response.text.should.be.a('string').with.length.above(100);",
+							"    response.text.should.contain('<html>');",
+							"    response.text.should.match(/^<\\!DOCTYPE html>(.*\\n)+<\\/html>$/);",
+							"",
+							"    // response.body and response.text are both strings, since the response is HTML.",
+							"    // If the response were JSON or XML, then response.body would be the parsed structure instead.",
+							"    response.body.should.equal(response.text);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://httpbin.org/html",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"html"
+					]
+				},
+				"description": "This request returns a successful response and performs some basic assertions on it, such as testing the status code, response time, body contents, etc."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b5e9cd29-076d-4fa3-93f5-e12b4a728559",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9958b073-6897-45a2-96ae-8f3bf0bd36f1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
