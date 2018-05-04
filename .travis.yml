@@ -24,10 +24,10 @@ before_deploy:
 - chmod +x packages/delivery/scripts/deploy.sh
 deploy:
   -  provider: script
-     script: "./scripts/deploy.sh uat"
+     script: "./scripts/deploy.sh uat learn20-dev"
      on:
        branch: master
   -  provider: script
-     script: "./scripts/deploy.sh dev"
+     script: "./scripts/deploy.sh dev learn20-dev"
      on:
        branch: development
