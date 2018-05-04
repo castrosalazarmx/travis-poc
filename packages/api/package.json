@@ -1,5 +1,5 @@
 {
-  "name": "node-api-boilerplate",
+  "name": "api",
   "version": "1.0.0",
   "description": "Starting point for a new Node.js Api",
   "main": "src/main.js",
@@ -16,7 +16,7 @@
     "logs": "docker logs -f node_api_boilerplate",
     "lint": "eslint -c .eslintrc src",
     "test": "NODE_ENV=test DEBUG=0 jest --verbose --forceExit",
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "./scripts/deploy.sh $1"
   },
   "repository": {
     "type": "git",

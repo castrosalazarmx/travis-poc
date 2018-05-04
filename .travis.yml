@@ -24,7 +24,11 @@ before_deploy:
 - chmod +x packages/lcms/scripts/deploy.sh
 - chmod +x packages/delivery/scripts/deploy.sh
 deploy:
-  provider: script
-  script: "./scripts/deploy.sh"
-  on:
-    branch: master
+  -  provider: script
+     script: "./scripts/deploy.sh uat"
+     on:
+       branch: master
+  -  provider: script
+     script: "./scripts/deploy.sh dev"
+     on:
+       branch: development
