@@ -20,9 +20,9 @@ script:
 - lerna run build
 before_deploy:
 - chmod +x scripts/deploy.sh
-- chmod +x packages/api/scripts/deploy.sh
-- chmod +x packages/lcms/scripts/deploy.sh
-- chmod +x packages/delivery/scripts/deploy.sh
+- chmod +x api/scripts/deploy.sh
+- chmod +x lcms/scripts/deploy.sh
+- chmod +x delivery/scripts/deploy.sh
 deploy:
   -  provider: script
      script: "./scripts/deploy.sh uat learn20-dev"
